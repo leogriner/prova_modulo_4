@@ -1,5 +1,4 @@
 
-
 /* o codigo nao esta funcionando, eu imaginei que isso aconteceria,
 mas como a julia me recomendou a dizer, eu compreendi o que deveria ser feito,
 e a partir do que eu consegui nas aulas aprender acho que fiz corretamente a ideia dos semaforos que piscam,
@@ -22,7 +21,7 @@ int buttonState = 0;  // para segurar o botao
 int ldrstatus = 0;    // para segurar o valor do sensor Ldr
 int threshold = 600;  // LDR threshold pra claro e escuro
 int buttonPressCount = 0; // para contar o numero de apertos no botao
-unsigned long lastDebounceTime = 0;  // tempo dp Debounce
+unsigned long lastDebounceTime = 0;  // tempo do Debounce
 unsigned long debounceDelay = 50;    // Delay do debounce
 
 void setup() {
@@ -61,7 +60,7 @@ void loop() {
       buttonState = reading;
       if (buttonState == HIGH) {
         buttonPressCount++;
-        Serial.println("Button Pressed");
+        Serial.println("Botao apertado");
       }
     }
   }
@@ -69,7 +68,7 @@ void loop() {
 }
   // Se tiver a noite ativar o modo escuro (ou seja o amarelo piscante)
   if (ldrstatus <= threshold) {
-    Serial.println("It's dark! Activating night mode...");
+    Serial.println("esta escuro, ativando modo noite...");
     digitalWrite(led_verde, LOW);
     digitalWrite(led_vermelho, LOW);
     digitalWrite(led_amarelo, HIGH); // ligar o Led amarelo
@@ -78,7 +77,7 @@ void loop() {
     delay(1000);
   } else {
     // se tiver claro, normalizar os semaforos
-    Serial.println("esta de dia, semaforos normais!...");
+    Serial.println("esta de dia, ativando modo claro!...");
     digitalWrite(led_amarelo, LOW); // desligue o amarelo para modo normal
     
     // Led vermelho (5 segundos)
